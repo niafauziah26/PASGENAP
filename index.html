@@ -12,7 +12,56 @@
 </head>
 
 <body>
+  <table class="table" id="daftar-produk">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tanggal</th>
+      <th scope="col">Nis</th>
+      <th scope="col">Nama</th>
+      <th scope="col">Alamat</th>
+      <th scope="col">No.tlpon</th>
+      <th scope="col">Kelas</th>
+      <th scope="col">Keterangan</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
+ <img src="loader.mp4" style="width: 1,8em; display: block" id="loader">
+
+<a href="form-pembeli.html">Tambah Data siswa</a>
+  
+  <script type="module">
+    import { ambilDaftarPembeli, formatAngka} from './main.js'
+    
+   $(document).ready(async function() {
+     let elemenDaftar = $("#daftar-produk > tbody");
+     let daftarPembeli = await ambilDaftarPembeli();
+     let nomor = 1;
+     
+     daftarPembeli.forEach((data) => { 
+       elemenDaftar.append(
+         '<tr>' +
+         '<th>' + nomor + '</th>' +
+         '<td>' + data.nama + '</td>' +
+         '<td>' + formatAngka(data.pembeli) + '</td>' +
+         '<td>' + data.notlpon + '</td>' +
+         '</tr>'
+         );
+         nomor = nomor + 1;
+     });
+     
+      $('.tombol-hapus').click(async function() {
+      await hapusPembeli($(this).attr('data'));
+      location.reload();
+      })
+     
+     $('#loader').hide();
+     
+   });
+  </script> 
 </body>
 
 </html>

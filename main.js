@@ -39,7 +39,7 @@ export async function ambilDaftarAbsensi() {
       alamat: dok.data().alamat,
       notlpn: dok.data().notlpn, 
       kelas: dok.data().kelas,
-      keterangan: dok.data().keterangan,
+      keterangan: dok.data().keterangan
     });
   });
   

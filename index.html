@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <table class="table" id="daftar-produk">
+  <table class="table" id="daftar-absensi">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -31,17 +31,17 @@
 
  <img src="loader.mp4" style="width: 1,8em; display: block" id="loader">
 
-<a href="form-pembeli.html">Tambah Data siswa</a>
+<a href="form-data-absensi.html">Tambah Data siswa</a>
   
   <script type="module">
-    import { ambilDaftarPembeli, formatAngka} from './main.js'
+    import { ambilDaftarAbsensi, formatAngka} from './main.js'
     
    $(document).ready(async function() {
-     let elemenDaftar = $("#daftar-produk > tbody");
-     let daftarPembeli = await ambilDaftarPembeli();
+     let elemenDaftar = $("#daftar-absensi > tbody");
+     let daftarAbsensi = await ambilDaftarAbsensi();
      let nomor = 1;
      
-     daftarPembeli.forEach((data) => { 
+     daftarAbsensi.forEach((data) => { 
        elemenDaftar.append(
           '<tr>' +
           '<th>' + nomor + '</th>' +

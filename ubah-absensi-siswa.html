@@ -60,9 +60,9 @@
   </div>
 
   <script type="module">
-    import { ambilansensi, ubahabsensi } from './main.js';
+    import { ambilabsensi, ubahabsensi } from './main.js';
 
-    let tombolTambah = document.getElementById('tombol-tambah');
+    let tombolUbah = document.getElementById('tombol-ubah');
     let elemenNamasiswa = document.getElementById('input-nama');
     let elemenTanggal = document.getElementById('input-tanggal');
     let elemenNis = document.getElementById('input-nis');
@@ -72,20 +72,20 @@
     let elemenketerangan = document.getElementById('input-keterangan')
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId')
-    const produk = await ambilabsensi(docId);
+    const absensi = await ambilabsensi(docId);
 
-    elemenNamasiswa.value = absensi.nama;
-    elementanggal.value = absensi.tanghal;
-    elemennis.value = absensi.nis;
-    elemenalamat.value = absensi.alamat;
-    elemennotlpn.value = absensi.notlpn;
-    elemenkelas.value = absensi.kelas;
-    elemenketerangan.value= absensi.keyerangan;
+    elemenTanggal.value = absensi.Tanggal;
+    elemenNis.value = absensi.Nis;
+    elemenNama.value = absensi.Nama;
+    elemenAlamat.value = absensi.Alamat;
+    elemenNotlpn.value = absensi.Notlpn;
+    elemenKelas.value = absensi.Kelas;
+    elemenKeterangan.value= absensi.keterangan;
 
 
     tombolUbah.addEventListener('click', async function(el) {
       el.preventDefault();
-      await ubahabsensi(docId, elemenNamaPembeli.value, elemenHarga.value, elemenStok.value);
+      await ubahabsensi(docId, elemenTanggal.value, elemenNis.value, elemenNama.value, elemenAlamat.value, elemenNotlpn.value, elemenKeterangan.value);
       window.location.href = 'index.html';
     });
   </script>

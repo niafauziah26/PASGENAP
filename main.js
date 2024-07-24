@@ -50,7 +50,7 @@ export function formatAngka(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export async function tambahabsensi(tanggal, nis, nama, alamat, notlpn, kelas, keterangan) {
+export async function tambahAbsensi(tanggal, nis, nama, alamat, notlpn, kelas, keterangan) {
       try {
         const dokRef = await addDoc(collection(db, 'absensi'), {
           tanggal: tanggal,

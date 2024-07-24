@@ -5,44 +5,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data Absensi Siswa</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <table class="table" id="daftar-absensi">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Tanggal</th>
-      <th scope="col">Nis</th>
-      <th scope="col">Nama</th>
-      <th scope="col">Alamat</th>
-      <th scope="col">No.tlpn</th>
-      <th scope="col">Kelas</th>
-      <th scope="col">Keterangan</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tanggal</th>
+        <th scope="col">Nis</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Alamat</th>
+        <th scope="col">No.tlpn</th>
+        <th scope="col">Kelas</th>
+        <th scope="col">Keterangan</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
- <img src="loader.mp4" style="width: 1,8em; display: block" id="loader">
+  <img src="loader.gif" style="width: 1,8em; display: block" id="loader">
 
-<a href="form-data-absensi.html">Tambah Data siswa</a>
-  
+  <a href="form-data-absensi.html">Tambah Data siswa</a>
+
   <script type="module">
-    import { ambilDaftarAbsensi, formatAngka} from './main.js'
-    
-   $(document).ready(async function() {
-     let elemenDaftar = $("#daftar-absensi > tbody");
-     let daftarAbsensi = await ambilDaftarAbsensi();
-     let nomor = 1;
-     
-     daftarAbsensi.forEach((data) => { 
-       elemenDaftar.append(
+    import { ambilDaftarAbsensi, formatAngka } from './main.js'
+
+    $(document).ready(async function() {
+      let elemenDaftar = $("#daftar-absensi > tbody");
+      let daftarAbsensi = await ambilDaftarAbsensi();
+      let nomor = 1;
+
+      daftarAbsensi.forEach((data) => {
+        elemenDaftar.append(
           '<tr>' +
           '<th>' + nomor + '</th>' +
           '<td>' + data.tanggal + '</td>' +
@@ -51,7 +51,7 @@
           '<td>' + data.alamat + '</td>' +
           '<td>' + data.notlpn + '</td>' +
           '<td>' + data.Kelas + '</td>' +
-          '<td>' + data.Keterangan+ '</td>' +
+          '<td>' + data.Keterangan + '</td>' +
           '<td>' + '<button class="btn btn-danger tombol-hapus" data>' + '<td class="stack-up">' +
           ' <a href="#" class="btn btn-warning link-ubah"  data="' +
           data.id +
@@ -63,18 +63,18 @@
         );
         nomor = nomor + 1;
       });
-     
+
       $('.tombol-hapus').click(async function() {
-      await hapusAbsensi($(this).attr('data'));
-      location.reload();
+        await hapusAbsensi($(this).attr('data'));
+        location.reload();
       })
-     
-     $('#loader').hide();
-     
-   });
-  </script> 
-  
-   <footer class="py-3 bg-dark-subtle mt-auto">
+
+      $('#loader').hide();
+
+    });
+  </script>
+
+  <footer class="py-3 bg-dark-subtle mt-auto">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Beranda</a></li>
     </ul>

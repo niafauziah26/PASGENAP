@@ -17,41 +17,37 @@
 
   <form class="mb-3">
     <div class="mb-3">
-      <label class="form-label">Nama siswa</label>
-      <input type="text" class="form-control" id="input-nama">
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Tanggal </label>
-      <input type="text" class="form-control" id="input-harga">
+      <label class="form-label">Tanggal</label>
+      <input type="text" class="form-control" id="input-tanggal">
     </div>
     <div class="mb-3">
       <label class="form-label">Nis</label>
-      <input type="text" class="form-control" id="input-stok">
+      <input type="text" class="form-control" id="input-nis">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Nama</label>
+      <input type="text" class="form-control" id="input-nama">
     </div>
 
     <div class="mb-3">
       <label class="form-label">Alamat</label>
-      <input type="text" class="form-control" id="input-stok">
+      <input type="text" class="form-control" id="input-alamat">
     </div>
 
     <div class="mb-3">
       <label class="form-label">Notlpn</label>
-      <input type="text" class="form-control" id="input-stok">
+      <input type="text" class="form-control" id="input-no.tlpon">
     </div>
 
     <div class="mb-3">
       <label class="form-label"> Kelas</label></label>
-      <input type="text" class="form-control" id="input-stok">
+      <input type="text" class="form-control" id="input-kelas">
     </div>
 
     <div class="mb-3">
       <label class="form-label">Keterangan</label>
-      <input type="text" class="form-control" id="input-stok">
+      <input type="text" class="form-control" id="input-keterangan">
     </div>
-    <input type="text" class="form-control" id="input-noTlpn">
-    </div>
-
-
     <button type="submit" class="btn btn-primary" id="tombol-ubah">Ubah</button>
   </form>
 
@@ -63,13 +59,14 @@
     import { ambilabsensi, ubahabsensi } from './main.js';
 
     let tombolUbah = document.getElementById('tombol-ubah');
-    let elemenNamasiswa = document.getElementById('input-nama');
-    let elemenTanggal = document.getElementById('input-tanggal');
-    let elemenNis = document.getElementById('input-nis');
-    let elemenAlamat = document.getElementById('tombol-alamat');
-    let elemenNotlpn = document.getElementById('input-notlpn');
+    let elemenNamasiswa = document.getElementById('input-tanggal');
+    let elemenTanggal = document.getElementById('input-nis');
+    let elemenNis = document.getElementById('input-nama');
+    let elemenAlamat = document.getElementById('input-alamat');
+    let elemenNotlpn = document.getElementById('input-no.tlpn');
     let elemenKelas = document.getElementById('input-kelas');
     let elemenketerangan = document.getElementById('input-keterangan')
+    const queryString = window.location.search
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId')
     const absensi = await ambilabsensi(docId);

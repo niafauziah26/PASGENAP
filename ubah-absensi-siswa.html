@@ -58,31 +58,32 @@
   <script type="module">
     import { ambilabsensi, ubahabsensi } from './main.js';
 
-    let tombolUbah = document.getElementById('tombol-ubah');
-    let elemenTanggal = document.getElementById('input-tanggal');
-    let elemenNis = document.getElementById('input-nis');
-    let elemenNama = document.getElementById('input-nama');
-    let elemenAlamat = document.getElementById('input-alamat');
-    let elemenNotlpn = document.getElementById('input-notlpn');
-    let elemenKelas = document.getElementById('input-kelas');
+    let tombolubah = document.getElementById('tombol-ubah');
+    let elementanggal = document.getElementById('input-tanggal');
+    let elemennis = document.getElementById('input-nis');
+    let elemennama = document.getElementById('input-nama');
+    let elemenalamat = document.getElementById('input-alamat');
+    let elemennotlpn = document.getElementById('input-notlpn');
+    let elemenkelas = document.getElementById('input-kelas');
     let elemenketerangan = document.getElementById('input-keterangan')
     const queryString = window.location.search
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId')
     const absensi = await ambilabsensi(docId);
 
-    elemenTanggal.value = absensi.Tanggal;
-    elemenNis.value = absensi.Nis;
-    elemenNama.value = absensi.Nama;
-    elemenAlamat.value = absensi.Alamat;
-    elemenNotlpn.value = absensi.Notlpn;
-    elemenKelas.value = absensi.Kelas;
-    elemenKeterangan.value = absensi.keterangan;
+    elementanggal.value = absensi.Tanggal;
+    elemennis.value = absensi.nis;
+    elemennama.value = absensi.nama;
+    elemenalamat.value = absensi.alamat;
+    elemennotlpn.value = absensi.notlpn;
+    elemenkelas.value = absensi.kelas;
+    elemenketerangan.value = absensi.keterangan;
 
 
     tombolUbah.addEventListener('click', async function(el) {
+      
       el.preventDefault();
-      await ubahabsensi(docId, elemenTanggal.value, elemenNis.value, elemenNama.value, elemenAlamat.value, elemenNotlpn.value, elemenKeterangan.value);
+      await ubahabsensi(docId, elementanggal.value, elemennis.value, elemennama.value, elemenalamat.value, elemennotlpn.value, elemenketerangan.value);
       window.location.href = 'index.html';
     });
   </script>

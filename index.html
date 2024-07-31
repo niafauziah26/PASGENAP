@@ -34,7 +34,7 @@
   <a href="form-data-absensi.html">Tambah Data siswa</a>
 
   <script type="module">
-    import { ambilDaftarAbsensi, formatAngka } from './main.js'
+    import { ambilDaftarAbsensi, formatAngka, hapusabsensi } from './main.js'
 
     $(document).ready(async function() {
       let elemenDaftar = $("#daftar-absensi > tbody");
@@ -65,7 +65,7 @@
       });
 
       $('.tombol-hapus').click(async function() {
-        await hapussiswa($(this).attr('data'));
+        await hapusabsensi($(this).attr('data'));
         location.reload();
       })
       $('.link-ubah').click(async function() {

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
+ <html lang="en">
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Data Absensi Siswa</title>
+
+  <title>Data Absen</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
 </head>
 
 <body class="m-4">
-  <h1>Ubah absensi siswa</h1>
+  <h1>Ubah Data Absensi</h1>
 
   <form class="mb-3">
     <div class="mb-3">
@@ -28,77 +28,59 @@
       <label class="form-label">Nama</label>
       <input type="text" class="form-control" id="input-nama">
     </div>
+    <form class="mb-3">
+      <div class="mb-3">
+        <label class="form-label">Alamat</label></label>
+        <input type="text" class="form-control" id="input-alamat">
+      </div>
+      <form class="mb-3">
+        <div class="mb-3">
+          <label class="form-label">No.Tlpn</label>
+          <input type="text" class="form-control" id="input-notlpn">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Kelas</label>
+          <input type="text" class="form-control" id="input-kelas">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Keterangan</label>
+          <input type="text" class="form-control" id="input-keterangan">
+        </div>
+        <button type="submit" class="btn btn-primary" id="tombol-ubah">Ubah</button>
+      </form>
 
-    <div class="mb-3">
-      <label class="form-label">Alamat</label>
-      <input type="text" class="form-control" id="input-alamat">
-    </div>
+      <a href="index.html" class="mt-1">Lihat Daftar Absensi</a>
 
-    <div class="mb-3">
-      <label class="form-label">Notlpn</label>
-      <input type="text" class="form-control" id="input-notlpn">
-    </div>
+      <script type="module">
+        import { ambilAbsensi, ubahAbsensi } from './main.js';
 
-    <div class="mb-3">
-      <label class="form-label">Kelas</label></label>
-      <input type="text" class="form-control" id="input-kelas">
-    </div>
+        let tombolubah = document.getElementById('tombol-ubah');
+        let elementanggal = document.getElementById('input-tanggal');
+        let elemennis = document.getElementById('input-nis');
+        let elemennama = document.getElementById('input-nama');
+        let elemenalamat = document.getElementById('input-alamat');
+        let elemennotlpn = document.getElementById('input-notlpn');
+        let elemenkelas = document.getElementById('input-kelas');
+        let elemenketerangan = document.getElementById('input-keterangan');
+        const queryString = window.location.search;
+        const parameterURL = new URLSearchParams(queryString);
+        const docId = parameterURL.get('docId');
+        const Absensi = await ambilAbsensi(docId);
 
-    <div class="mb-3">
-      <label class="form-label">Keterangan</label>
-      <input type="text" class="form-control" id="input-keterangan">
-    </div>
-    <button type="submit" class="btn btn-primary" id="tombol-ubah">Ubah</button>
-  </form>
+        elemennama.value = Absensi.nama;
+        elemenalamat.value = Absensi.alamat;
+        elemennotlpn.value = Absensi.notlpn;
+        elemenkelas.value = Absensi.kelas;
+        elemennis.value = Absensi.nis;
+        elementanggal.value = Absensi.tanggal;
+        elemenketerangan.value = Absensi.keterangan;
 
-
-  <script type="module">
-    import { ubahabsensi, ambilabsensi } from './main.js';
-
-    let tombolubah = document.getElementById('tombol-ubah');
-    let elementanggal = document.getElementById('input-tanggal');
-    let elemennis = document.getElementById('input-nis');
-    let elemennama = document.getElementById('input-nama');
-    let elemenalamat = document.getElementById('input-alamat');
-    let elemennotlpn = document.getElementById('input-notlpn');
-    let elemenkelas = document.getElementById('input-kelas');
-    let elemenketerangan = document.getElementById('input-keterangan')
-    const queryString = window.location.search
-    const parameterURL = new URLSearchParams(queryString);
-    const docId = parameterURL.get('docId')
-    const absensi = await ambilabsensi(docId);
-
-    elementanggal.value = absensi.Tanggal;
-    elemennis.value = absensi.nis;
-    elemennama.value = absensi.nama;
-    elemenalamat.value = absensi.alamat;
-    elemennotlpn.value = absensi.notlpn;
-    elemenkelas.value = absensi.kelas;
-    elemenketerangan.value = absensi.keterangan;
-
-
-    tombolUbah.addEventListener('click', async function(el) {
-      el.preventDefault();
-      
-      console.log(elementanggal.value);
-      console.log(elemennama.value);
-      console.log(elemennis.value);
-      console.log(elemenalamat.value);
-      console.log(elemennotlpn.value);
-      console.log(elemenkelas.value);
-      console.log(elemenketerangan.value);
-      
-      await ubahabsensi(docId, elementanggal.value, elemennis.value, elemennama.value, elemenalamat.value, elemennotlpn.value, elemenketerangan.value);
-      window.location.href = 'index.html';
-    });
-  </script>
-  
-    <footer class="py-3 bg-dark-subtle mt-auto">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Tambah Absensi</a></li>
-    </ul>
-    <p class="text-center text-body-secondary">&copy; 2024 Absen Siswa</p>
-  </footer>
+        tombolubah.addEventListener('click', async function(el) {
+          el.preventDefault();
+          await ubahAbsensi(docId, elementanggal.value, elemennis.value, elemennama.value, elemenalamat.value, elemennotlpn.value, elemenkelas.value, elemenketerangan.value);
+          window.location.href = 'index.html';
+        });
+      </script>
 </body>
 
 </html>

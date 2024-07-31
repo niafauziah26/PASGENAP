@@ -52,7 +52,7 @@
       <a href="index.html" class="mt-1">Lihat Daftar Absensi</a>
 
       <script type="module">
-        import { ambilAbsensi, ubahAbsensi } from './main.js';
+        import { ambilabsensi, ubahabsensi } from './main.js';
 
         let tombolubah = document.getElementById('tombol-ubah');
         let elementanggal = document.getElementById('input-tanggal');
@@ -65,7 +65,7 @@
         const queryString = window.location.search;
         const parameterURL = new URLSearchParams(queryString);
         const docId = parameterURL.get('docId');
-        const Absensi = await ambilAbsensi(docId);
+        const Absensi = await ambilabsensi(docId);
 
         elemennama.value = Absensi.nama;
         elemenalamat.value = Absensi.alamat;
@@ -77,7 +77,7 @@
 
         tombolubah.addEventListener('click', async function(el) {
           el.preventDefault();
-          await ubahAbsensi(docId, elementanggal.value, elemennis.value, elemennama.value, elemenalamat.value, elemennotlpn.value, elemenkelas.value, elemenketerangan.value);
+          await ubahabsensi(docId, elementanggal.value, elemennis.value, elemennama.value, elemenalamat.value, elemennotlpn.value, elemenkelas.value, elemenketerangan.value);
           window.location.href = 'index.html';
         });
       </script>

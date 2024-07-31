@@ -81,8 +81,16 @@
 
 
     tombolUbah.addEventListener('click', async function(el) {
-      
       el.preventDefault();
+      
+      console.log(elementanggal.value);
+      console.log(elemennama.value);
+      console.log(elemennis.value);
+      console.log(elemenalamat.value);
+      console.log(elemennotlpn.value);
+      console.log(elemenkelas.value);
+      console.log(elemenketerangan.value);
+      
       await ubahabsensi(docId, elementanggal.value, elemennis.value, elemennama.value, elemenalamat.value, elemennotlpn.value, elemenketerangan.value);
       window.location.href = 'index.html';
     });

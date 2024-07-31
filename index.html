@@ -68,7 +68,9 @@
         await hapussiswa($(this).attr('data'));
         location.reload();
       })
-      
+      $('.link-ubah').click(async function() {
+        window.location.replace('ubah-siswa.html?docId=' + $(this).attr('data'));
+      })
 
       $('#loader').hide();
 
